@@ -9,6 +9,6 @@ run python train.py --continue --load /The path of the checkpoints/the name of t
 
 #the test example is formated by 2×2 images
 # |---the previous frame---|---the current frame---|
-# |----the last frame------|---the ground truth----|
+# |---the last frame-------|---the ground truth----|
  
 run python test.py  --input_path /PATH/TO/YOUR/TESTING_EXAMPLE/   --output_path /PATH/TO/YOUR/SAVED/IMAGES/
