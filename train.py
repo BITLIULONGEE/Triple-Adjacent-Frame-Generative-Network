@@ -21,7 +21,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Tripledeblur arguments')
     parser.add_argument('--name', type=str, default='TripleFrameDeblur', help='name of the expriment')
     parser.add_argument('--batchSize', help='training batch size', type=int, default=1)
-    parser.add_argument('--dataroot', type=str, default='/home/user/LWL/datasets/DeepVideoDeblurring_Dataset')
+    parser.add_argument('--dataroot', type=str, default='')
     parser.add_argument('--lr', type=float, default=1e-4, dest='learning_rate', help='initial learning rate')
     parser.add_argument('--gpu', dest='gpu_id', type=str, default='0', help='use gpu or cpu')
     parser.add_argument('--load', help='path to load model')
@@ -55,7 +55,7 @@ def main(_):
                             ScheduledHyperParamSetter('learning_rate', [(300, args.learning_rate), (args.max_epoch, 0)], interp='linear'),
                             InferenceRunner(ds_val, [ScalarStats('PSNR_BASE'),ScalarStats('PSNR_2'), ScalarStats('PSNR_IMPRO2'),ScalarStats('pixel_loss2'), ScalarStats('feature_loss2')])],
                  session_init=SaverRestore(checkpoint_dir+'/model-431249.data-00000-of-00001') if args.continue_train else None,
-                 starting_epoch=70,
+                 starting_epoch=1,
                  steps_per_epoch=args.steps_per_epoch, 
                  max_epoch=args.max_epoch)
 
